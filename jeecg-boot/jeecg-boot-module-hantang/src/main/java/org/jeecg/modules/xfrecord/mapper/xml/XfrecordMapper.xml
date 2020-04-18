@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.xfrecord.mapper.XfrecordMapper">
+    <resultMap id="Xfrecord" type="org.jeecg.modules.xfrecord.entity.Xfrecord">
+
+
+    </resultMap>
+    <select id="queryXfRecord" parameterType="String"  resultMap="Xfrecord">
+        select * from (
+            select t.*,mb.mb_cardname, c.fd_name as xffd_name
+            from (select id, mb_cardcode,zd_code,sgd_code,xfdz_money,sj_money,yh_rate,xf_time,xf_type,sy_oprator,fd_code,xfre_money from mb_xfrecord where xf_time >= '2019-04-01 00:00:00') t
+            left join mb_member mb on mb.mb_cardcode=t.mb_cardcode
+            left join ls_company c on c.fd_code=t.fd_code
+        ) tb
+       order by tb.xf_time  DESC
+    </select>
+
+</mapper>
