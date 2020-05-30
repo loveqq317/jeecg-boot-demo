@@ -55,7 +55,7 @@ public class MemberrechargeController extends JeecgController<Memberrecharge, IM
 								   HttpServletRequest req) {
 		Result<Page<Memberrecharge>> result = new Result<Page<Memberrecharge>>();
 		Page<Memberrecharge> pageList=new Page<Memberrecharge>(pageNo,pageSize);
-		pageList=memberrechargeService.queryRechargeRecord(pageList);
+		pageList=memberrechargeService.queryRechargeRecord(pageList,memberrecharge.getMbCardcode(),memberrecharge.getSyTime());
 		return Result.ok(pageList);
 	}
 	

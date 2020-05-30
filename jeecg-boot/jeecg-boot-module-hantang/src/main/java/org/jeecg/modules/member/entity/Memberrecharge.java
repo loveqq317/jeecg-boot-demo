@@ -109,4 +109,5 @@ public class Memberrecharge implements Serializable {
 	@Excel(name = "操作类型(发卡、充值）", width = 15)
     @ApiModelProperty(value = "操作类型(发卡、充值）")
     private String opType;
+	
 }

@@ -1,5 +1,6 @@
 package org.jeecg.modules.member.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
@@ -17,5 +18,5 @@ import org.jeecg.modules.member.entity.Memberrecharge;
 
 public interface MemberrechargeMapper extends BaseMapper<Memberrecharge> {
 
-    List<Memberrecharge> queryRechargeRecord(Page<Memberrecharge> page);
+    List<Memberrecharge> queryRechargeRecord(Page<Memberrecharge> page, String mbCardcode, Date syTime);
 }

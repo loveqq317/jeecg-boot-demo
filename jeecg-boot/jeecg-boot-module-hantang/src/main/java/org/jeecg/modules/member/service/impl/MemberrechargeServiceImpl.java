@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import java.util.Date;
+
 /**
  * @Description: 会员充值记录
  * @Author: jeecg-boot
@@ -22,7 +24,7 @@ public class MemberrechargeServiceImpl extends ServiceImpl<MemberrechargeMapper,
     private MemberrechargeMapper memberrechargeMapper;
     @Override
     @DS("multi-datasource1")
-    public Page<Memberrecharge> queryRechargeRecord(Page<Memberrecharge> page) {
-        return page.setRecords(memberrechargeMapper.queryRechargeRecord(page));
+    public Page<Memberrecharge> queryRechargeRecord(Page<Memberrecharge> page, String mbCardcode, Date syTime) {
+        return page.setRecords(memberrechargeMapper.queryRechargeRecord(page, mbCardcode, syTime));
     }
 }

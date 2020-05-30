@@ -12,8 +12,14 @@
         from mb_ccfk t
         left join mb_member b on b.mb_cardcode=t.mb_cardcode
         left join ls_company c on c.fd_code=t.fd_code
-        where t.sy_time >= '2019-04-01 00:00:00'
+        where t.sy_time >= '2019-04-01 12:00:00'
         and t.sy_money > 0 and t.cc_money>0  and ca_money>0
+        <if test="mbCardcode!=null and mbCardcode!=''">
+            and t.mb_cardcode = #{mbCardcode}
+        </if>
+        <if test="syTime!=null and syTime!=''">
+            and t.sy_time <![CDATA[ <= ]]> #{syTime}
+        </if>
 
    ) tb
 

@@ -8,10 +8,36 @@
     <select id="queryXfRecord" parameterType="String"  resultMap="Xfrecord">
         select * from (
             select t.*,mb.mb_cardname, c.fd_name as xffd_name
-            from (select id, mb_cardcode,zd_code,sgd_code,xfdz_money,sj_money,yh_rate,xf_time,xf_type,sy_oprator,fd_code,xfre_money from mb_xfrecord where xf_time >= '2019-04-01 00:00:00') t
-            left join mb_member mb on mb.mb_cardcode=t.mb_cardcode
+            from (select id, mb_cardcode,zd_code,sgd_code,xfdz_money,sj_money,yh_rate,xf_time,xf_type,sy_oprator,fd_code,xfre_money from mb_xfrecord where xf_time >= '2019-04-01 12:00:00'
+            <if test="xfrecordParams != null">
+                <if test="xfrecordParams.mbCardcode != null and xfrecordParams.mbCardcode != ''">
+                    AND mb_cardcode LIKE '%${xfrecordParams.mbCardcode}%'
+                </if>
+
+                <if test="xfrecordParams.zdCode != null and xfrecordParams.zdCode != ''">
+                    AND zd_code LIKE '%${xfrecordParams.zdCode}%'
+                </if>
+                <if test="beginDate != null and beginDate!= ''">
+                    AND xf_time  <![CDATA[ >= ]]>  '${beginDate}'
+                </if>
+                <if test="endDate != null and endDate != ''">
+                    AND xf_time  <![CDATA[ <= ]]>  '${endDate}'
+                </if>
+                <if test="xfrecordParams.fdCode != null and xfrecordParams.fdCode != ''">
+                    AND fd_code LIKE '%${xfrecordParams.fdCode}%'
+                </if>
+
+            </if>
+            ) t
+            left join  mb_member mb on mb.mb_cardcode=t.mb_cardcode
             left join ls_company c on c.fd_code=t.fd_code
-        ) tb
+        ) tb where 1=1
+        <if test="xfrecordParams.mbCardname != null and xfrecordParams.mbCardname != ''">
+            AND tb.mb_cardname LIKE '%${xfrecordParams.mbCardname}%'
+        </if>
+        <if test="xfrecordParams.xffdName != null and xfrecordParams.xffdName != ''">
+            AND xffd_name LIKE '%${xfrecordParams.xffdName}%'
+        </if>
        order by tb.xf_time  DESC
     </select>
 

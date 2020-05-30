@@ -53,7 +53,9 @@ public class XfrecordController extends JeecgController<Xfrecord, IXfrecordServi
 								   HttpServletRequest req) {
 		Result<Page<Xfrecord>> result = new Result<Page<Xfrecord>>();
 		Page<Xfrecord> pageList=new Page<Xfrecord>(pageNo,pageSize);
-		pageList=xfrecordService.queryXfRecord(pageList);
+		String begin=req.getParameter("xfTime_begin");
+		String end=req.getParameter("xfTime_end");
+		pageList=xfrecordService.queryXfRecord(pageList,xfrecord,begin,end);
 		return Result.ok(pageList);
 	}
 	

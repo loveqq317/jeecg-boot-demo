@@ -2,6 +2,7 @@ package org.jeecg.modules.xfrecord.service.impl;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.jeecg.modules.xfrecord.controller.XfrecordController;
 import org.jeecg.modules.xfrecord.entity.Xfrecord;
 import org.jeecg.modules.xfrecord.mapper.XfrecordMapper;
 import org.jeecg.modules.xfrecord.service.IXfrecordService;
@@ -22,7 +23,7 @@ public class XfrecordServiceImpl extends ServiceImpl<XfrecordMapper, Xfrecord> i
     private XfrecordMapper xfrecordMapper;
     @Override
     @DS("multi-datasource1")
-    public Page<Xfrecord> queryXfRecord(Page<Xfrecord> page) {
-        return page.setRecords(xfrecordMapper.queryXfRecord(page));
+    public Page<Xfrecord> queryXfRecord(Page<Xfrecord> page, Xfrecord xfrecord,String beginDate,String endDate) {
+        return page.setRecords(xfrecordMapper.queryXfRecord(page,xfrecord, beginDate, endDate));
     }
 }

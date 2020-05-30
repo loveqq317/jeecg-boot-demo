@@ -84,9 +84,9 @@ public class Xfrecord implements Serializable {
     @ApiModelProperty(value = "优惠率")
     private BigDecimal yhRate;
 	/**消费时间*/
-	@Excel(name = "消费时间", width = 15, format = "yyyy-MM-dd")
-	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+	@Excel(name = "消费时间", width = 15, format = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "消费时间")
     private Date xfTime;
 	/**消费类型(已结，还款，反冲)*/

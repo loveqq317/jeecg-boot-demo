@@ -12,5 +12,5 @@ import org.jeecg.modules.xfrecord.entity.Xfrecord;
  * @Version: V1.0
  */
 public interface IXfrecordService extends IService<Xfrecord> {
-    Page<Xfrecord> queryXfRecord (Page<Xfrecord> page);
+    Page<Xfrecord> queryXfRecord (Page<Xfrecord> page,Xfrecord xfrecord,String beginDate,String endDate);
 }
